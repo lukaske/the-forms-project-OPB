@@ -3,12 +3,18 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Register</h1>
     <form method="POST">
         {% csrf_token %}
+        <label for="first_name">First name:</label>
+        <input type="text" id="first_name" name="first_name" required><br><br>
+        <label for="last_name">Last name:</label>
+        <input type="text" id="last_name" name="last_name" required><br><br>
+        <label for="email">Email address</label>
+        <input type="text" id="email" name="email" required><br><br>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         <label for="password1">Password:</label>

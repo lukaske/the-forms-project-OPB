@@ -13,3 +13,5 @@ Spletna aplikacija je namenjena kreiranju in gostovanju poljubnih spletnih obraz
 # Avtorji
 [David Lajevec](https://github.com/davidlajevec), [Luka Skeledžija](https://github.com/lukaske)
 
+# ER diagram podatkovne baze
+![alt text](https://github.com/lukaske/the-forms-project-OPB/blob/dev_david/db_diagram.png)

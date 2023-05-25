@@ -1,12 +1,83 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Landing Page</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <style>
+    #formBuilder {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    #welcome {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: white;
+      color: black;
+      text-decoration: none;
+      margin: 10px;
+    }
+
+    a:hover {
+      background-color: rgb(176, 165, 165);
+      color: white;
+    }
+
+    .form {
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 600px;
+    }
+
+    .form-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .creation-date {
+      color: #000000;
+      padding: 5px;
+      font-size: 12px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Welcome, {{ user.username }}!</h1>
-  <!-- Display user-specific content or customize the landing page as desired -->
+  <h2 id="welcome">Welcome, {{ user.username }}!</h2>
+  <h1>Your forms</h1>
+  <ul>
+    {% for user_form in user_data %}
+    <div class="form-container">
+      <div class="form">
+        <h2 class="form-name">
+          <a href="">{{ user_form.form_name}}</a>
+        </h2>
+        <div class="creation-date">{{ user_form.created_at }}</div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </ul>
+
+  <a id="formBuilder" href="{% url 'form_builder' %}">Form Builder</a>
 </body>
+
 </html>
