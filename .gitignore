@@ -127,3 +127,67 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Django specific
+
+# Ignore database files
+*.sqlite3
+*.db
+
+# Ignore static files directory
+/static/
+
+# Ignore media files directory
+/media/
+
+# Ignore virtual environment
+/venv/
+
+# Ignore Django secret key
+*.secret_key
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local development settings
+/settings/local.py
+
+# Ignore log files
+*.log
+
+# Ignore backup files
+*.bak
+
+# Ignore compiled files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore cache and temporary files
+__pycache__/
+*.swp
+*.swo
+*.cache
+
+# Ignore environment-specific files
+.env
+.env.*
+
+# Ignore local database configurations
+/database/
+
+# Ignore generated documentation
+/docs/_build/
+
+# Ignore test and coverage reports
+/.coverage
+/htmlcov/
+
+# Ignore sensitive configuration files
+*.secret
+*.cfg
+*.conf
