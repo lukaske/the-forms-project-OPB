@@ -9,13 +9,19 @@
     #formBuilder {
       position: absolute;
       top: 10px;
+      right: 120px;
+    }
+
+    #logOut {
+      position: absolute;
+      top: 10px;
       right: 10px;
     }
 
     #welcome {
       position: absolute;
       top: 10px;
-      left: 10px;
+      left: 100px;
     }
 
     .form-container {
@@ -23,7 +29,7 @@
       justify-content: center;
     }
 
-    a {
+    #user_form {
       display: inline-block;
       padding: 10px 20px;
       background-color: white;
@@ -32,7 +38,7 @@
       margin: 10px;
     }
 
-    a:hover {
+    #user_form:hover {
       background-color: rgb(176, 165, 165);
       color: white;
     }
@@ -68,9 +74,9 @@
     <div class="form-container">
       <div class="form">
         <h2 class="form-name">
-          <a href="">{{ user_form.form_name}}</a>
+          <a id=user_form href="{% url 'dynamic_form_view' view_name=user_form.form_name %}">{{ user_form.form_name}}</a>
         </h2>
-        <div class="creation-date">{{ user_form.created_at }}</div>
+        <div class="creation-date">Created: {{ user_form.created_at }}</div>
       </div>
     </div>
 
@@ -78,6 +84,7 @@
   </ul>
 
   <a id="formBuilder" href="{% url 'form_builder' %}">Form Builder</a>
+  <a id="logOut" href="{% url 'logout' %}">Log Out</a>
 </body>
 
 </html>

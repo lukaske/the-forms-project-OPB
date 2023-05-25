@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import HTML_storing_form
+from django.contrib.auth import logout
+from django.views import View
 
 def homepage_view(request):
     return render(request, "homepage.html")
@@ -44,7 +45,7 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("")
+            return redirect("login")
     else:
         form = UserCreationForm()
     return render(request, "register.html", {"form": form})
@@ -70,3 +71,21 @@ def form_builder_view(request):
         custom_form = HTML_storing_form(user = username, form_name = form_name, form_html = form_html)
         custom_form.save()
     return render(request, "form_builder.html")
+
+
+def dynamic_form_view(request, view_name):
+    # Define a base class for dynamically created views
+    class DynamicView(View):
+        def get(self, request):
+            return HttpResponse(f"This is the {view_name} view.")
+
+    # Dynamically create the view class with a unique name
+    view_class = type(f"{view_name}View", (DynamicView,), {})
+
+    # Instantiate and dispatch the dynamically created view
+    view = view_class.as_view()
+    return view(request)
+
+def logout_view(request):
+    logout(request)
+    return redirect('homepage') 

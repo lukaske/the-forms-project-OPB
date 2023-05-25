@@ -15,3 +15,6 @@ Spletna aplikacija je namenjena kreiranju in gostovanju poljubnih spletnih obraz
 
 # ER diagram podatkovne baze
 ![alt text](https://github.com/lukaske/the-forms-project-OPB/blob/dev_david/db_diagram.png)
+
+Zgenerira se ga z:
+`python manage.py graph_models -a -g -o db_diagram.png`
