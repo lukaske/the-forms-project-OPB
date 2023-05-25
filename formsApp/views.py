@@ -48,3 +48,4 @@ def user_dashboard(request):
 
 def form_builder_view(request):
     return render(request, 'form_builder/form_builder.html')
+
