@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Form Builder</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/tether.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/form_builder.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <style>
+      .dashboard_button {
+      position: absolute;
+      top: -12px;
+      left: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light  bg-faded fixed-top">
+            <div class="clearfix">
+                <div class="container">
+                    <button style="cursor: pointer;display: none" class="btn btn-info export_html mt-2 pull-right">Export HTML</button>
+                    <h1 class=" pull-left">Form Builder</h1>
+                    <a class="pull-left" href="{% url 'user_dashboard' %}">Dashboard</a>
+                </div>
+            </div>
+        </nav>
+        <br/>
+        <div class="clearfix"></div>
+        <div class="form_builder" style="margin-top: 25px">
+            <div class="row">
+                <div class="col-sm-2">
+                    <nav class="nav-sidebar">
+                        <ul class="nav">
+                            <li class="form_bal_textfield">
+                                <a href="javascript:;">Text Field <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_textarea">
+                                <a href="javascript:;">Text Area <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_select">
+                                <a href="javascript:;">Select <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_radio">
+                                <a href="javascript:;">Radio Button <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_checkbox">
+                                <a href="javascript:;">Checkbox <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_email">
+                                <a href="javascript:;">Email <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_number">
+                                <a href="javascript:;">Number <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_password">
+                                <a href="javascript:;">Password <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_date">
+                                <a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                            <li class="form_bal_button">
+                                <a href="javascript:;">Button <i class="fa fa-plus-circle pull-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-5 bal_builder">
+                    <div class="form_builder_area"></div>
+                </div>
+                <div style="display: none" class="col-md-5 form-group plain_html">
+                    <div class="col-md-12">
+                        <form id="save_html_form" method="POST" class="form-horizontal" action="/form-builder/">
+                            {% csrf_token %}
+                            <div style="display: none" class="form-group plain_html"><textarea rows="30" id="preview_content" class="form-control"></textarea></div>
+                            <input style="display: none" class="form-group plain_html" type="text" id="form_name" name="form_name" placeholder="Form name" required><br><br>
+                            <input type="hidden" name="html_form" id="html_form">
+                            <button style="cursor: pointer; display: none;" class="form-group plain_html" id="save_button" type="submit">Save HTML</button>
+                            <script>
+                                // Get the form and button elements
+                                var form = document.getElementById("save_html_form");
+                                var submitButton = document.getElementById("save_button");
+                              
+                                // Attach an event listener to the button
+                                submitButton.addEventListener("click", function(event) {
+                                  // Prevent the default form submission
+                                  event.preventDefault();
+                                  var htmlForm = document.getElementById('preview_content').value;
+                                  document.getElementById('html_form').value = htmlForm;
+                              
+                                  // Manually submit the form
+                                  form.submit();
+                                });
+                              </script>
+                              
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/tether.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/form_builder.js' %}"></script>
+</body>
+</html>

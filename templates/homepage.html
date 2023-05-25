@@ -1,26 +1,55 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Homepage</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <title>formsProject</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: lightgreen;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        a:hover {
+            background-color: darkgreen;
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
-  <div>
-    <h1>Welcome to the Homepage</h1>
-    {% if error_message %}
-    <p>{{ error_message }}</p>
-    {% endif %}
-    <form method="POST" action="{% url 'homepage' %}">
-      {% csrf_token %}
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required><br><br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required><br><br>
-      <input type="submit" value="Login">
-    </form>
-    <a href="{% url 'register' %}">Register</a>
-    <a href="{% url 'admin:index' %}">Admin Login</a>
-  </div>
+    <h1>formsProject</h1>
+    <div class="image-container">
+        <img src="{% static 'media/home_forms.jpg' %}" alt="Welcome Image">
+    </div>
+    <div class="button-container">
+        <a href="{% url 'login' %}" class="button">Login</a>
+
+        <a href="{% url 'register' %}" class="button">Register</a>
+    </div>
+    <div>
+        <a href="{% url 'admin:index' %}">Admin Login</a>
+    </div>
 </body>
+
 </html>
