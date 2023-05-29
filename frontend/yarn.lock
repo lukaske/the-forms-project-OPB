@@ -1730,6 +1730,13 @@
   dependencies:
     "@mantine/utils" "6.0.2"
 
+"@mantine/ds@^6.0.11":
+  version "6.0.11"
+  resolved "https://registry.yarnpkg.com/@mantine/ds/-/ds-6.0.11.tgz#6f395692ff0dfcc5d077e346c0e9a7f65342555b"
+  integrity sha512-4DAHf7jKYcybaIPOsyz0H2Bi2zoblrl9PY1XJgIImylyz/eYEveQS79lVtJRbdyCi4SX85w3FGmtLDq2UyZ7sw==
+  dependencies:
+    "@mantine/utils" "6.0.11"
+
 "@mantine/hooks@6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-6.0.2.tgz#88433aade23237c1566a083b80e6620eaa932561"
@@ -1774,6 +1781,11 @@
   dependencies:
     clsx "1.1.1"
     csstype "3.0.9"
+
+"@mantine/utils@6.0.11":
+  version "6.0.11"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-6.0.11.tgz#03237be9bda3f671c7f9043a23d058d4e64cb72f"
+  integrity sha512-ijkEAaKEhZCw7HSWsGMQZsvfmQKmJXmPoQ1LeEwcH3vjZalPk9pQjSPPfUdTeX9ZAv095XWmfVMiNV8+xvM0OQ==
 
 "@mantine/utils@6.0.2":
   version "6.0.2"
