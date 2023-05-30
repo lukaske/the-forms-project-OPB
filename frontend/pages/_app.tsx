@@ -9,11 +9,10 @@ import links from '../config/navigation.json'
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
 
   const toggleColorScheme = (value?: ColorScheme) => {
-    //const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
-    const nextColorScheme = 'light';
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
     setCookie('obrazci-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
