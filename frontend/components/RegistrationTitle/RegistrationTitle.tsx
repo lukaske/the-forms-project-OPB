@@ -24,12 +24,8 @@ export function RegisrationTitle() {
       password: (value) => (value.length < 8 ? 'Geslo mora biti dolgo vsaj 8 znakov' : null),
       vpassword: (value, values) => value !== values.password ? 'Gesli se ne ujemata!' : null,
       terms: (value) => value ? null : 'Strinjati se morate s pogoji uporabe',
-
     },
   });
-
-
-
 
   return (
     <Container size={420} my={100}>
