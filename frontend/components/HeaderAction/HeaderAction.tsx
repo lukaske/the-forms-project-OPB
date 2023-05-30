@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
 
     [theme.fn.smallerThan('sm')]: {
-      fontSize: rem(1),
+      fontSize: rem(14),
     },
   },
 

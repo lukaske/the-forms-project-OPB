@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundImage:
-      'linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(https://images.pexels.com/photos/261679/pexels-photo-261679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=280)',
+      'linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(./splash.jpeg)',
     paddingTop: `calc(${theme.spacing.xl} * 3)`,
     paddingBottom: `calc(${theme.spacing.xl} * 3)`,
   },
@@ -109,7 +109,7 @@ export function HeroImageRight() {
               mt={40}
               onClick={() => push('/login')}
             >
-              Odpri aplikacijo →
+              Ustvari obrazec →
             </Button>
           </div>
         </div>
