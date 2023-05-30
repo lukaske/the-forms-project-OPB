@@ -1,10 +1,9 @@
-import { AuthenticationTitle } from '../components/AuthenticationTitle/AuthenticationTitle';
-import { ForgotPassword } from '../components/ForgotPassword/ForgotPassword';
+import { RegisrationTitle } from '../components/RegistrationTitle/RegistrationTitle';
 
 export default function HomePage() {
   return (
     <>
-      < ForgotPassword/>
+      <RegisrationTitle />
     </>
   );
 }

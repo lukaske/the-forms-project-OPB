@@ -2,10 +2,10 @@ import { createStyles, Text, Container, ActionIcon, Group, rem, Title } from '@m
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import {IconForms} from '@tabler/icons'
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
+import { useRouter } from 'next/router';
 const useStyles = createStyles((theme) => ({
   footer: {
     paddingTop: `calc(${theme.spacing.xl} * 2)`,
-    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
@@ -14,7 +14,7 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     maxWidth: rem(200),
-
+    cursor: 'pointer',
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       flexDirection: 'column',
@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
 
     [theme.fn.smallerThan('sm')]: {
-      fontSize: rem(1),
+      fontSize: rem(14),
     },
   },
 
@@ -44,6 +44,7 @@ const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
+    maxWidth: '71.25rem',
 
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
@@ -86,6 +87,7 @@ const useStyles = createStyles((theme) => ({
 
   afterFooter: {
     display: 'flex',
+    maxWidth: '71.25rem',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: theme.spacing.xl,
@@ -140,11 +142,12 @@ export function FooterLinks({ data }: FooterLinksProps) {
 
   // variable to hold the current date
   var today = new Date();
+  const push = useRouter().push;
 
   return (
     <footer className={classes.footer}>
       <Container className={classes.inner}>
-        <div className={classes.logo}>
+        <div className={classes.logo} onClick={() => push('/')}>
         <IconForms
     size={36}
     strokeWidth={2}

@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import HTML_storing_form
 from django.contrib.auth import logout
 from django.views import View
+from django.urls import re_path, path
+
 
 def homepage_view(request):
     return render(request, "homepage.html")

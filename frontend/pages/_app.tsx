@@ -6,6 +6,8 @@ import { MantineProvider, ColorScheme, ColorSchemeProvider, useMantineTheme } fr
 import { Notifications } from '@mantine/notifications';
 import { HeaderAction, HeaderActionProps } from '../components/HeaderAction/HeaderAction';
 import links from '../config/navigation.json'
+import { FooterLinks } from '../components/FooterLinks/FooterLinks';
+import footer from '../config/footer.json';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;

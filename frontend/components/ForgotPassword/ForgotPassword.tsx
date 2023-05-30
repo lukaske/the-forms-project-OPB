@@ -13,7 +13,7 @@ import {
   rem,
 } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
-
+import { useRouter } from 'next/router';
 const useStyles = createStyles((theme) => ({
   title: {
     fontSize: rem(26),
@@ -37,7 +37,7 @@ const useStyles = createStyles((theme) => ({
 
 export function ForgotPassword() {
   const { classes } = useStyles();
-
+  const { push } = useRouter();
   return (
     <Container size={460} my={100} >
       <Title className={classes.title} align="center">
@@ -53,7 +53,7 @@ export function ForgotPassword() {
           <Anchor color="dimmed" size="sm" className={classes.control}>
             <Center inline>
               <IconArrowLeft size={rem(12)} stroke={1.5} />
-              <Box ml={5}>Nazaj na prijavo</Box>
+              <Box ml={5} onClick={() => push('/login')}>Nazaj na prijavo</Box>
             </Center>
           </Anchor>
           <Button className={classes.control}>Ponastavi geslo</Button>

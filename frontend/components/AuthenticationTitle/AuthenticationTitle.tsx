@@ -10,8 +10,10 @@ import {
   Group,
   Button,
 } from '@mantine/core';
+import {useRouter} from 'next/router';  
 
 export function AuthenticationTitle() {
+  const push = useRouter().push;
   return (
     <Container size={420} my={100}>
       <Title
@@ -22,7 +24,7 @@ export function AuthenticationTitle() {
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
         Še nimate uporabniškega računa?{' '}
-        <Anchor size="sm" component="button">
+        <Anchor size="sm" component="button" onClick={() => push('/register')}>
             Ustvarite ga
         </Anchor>
       </Text>
@@ -32,7 +34,7 @@ export function AuthenticationTitle() {
         <PasswordInput label="Geslo" placeholder="Vaše geslo" required mt="md" />
         <Group position="apart" mt="lg">
           <Checkbox label="Zapomni si me" />
-          <Anchor component="button" size="sm">
+          <Anchor component="button" size="sm" onClick={() => push('/forgot-password')}>
             Pozabljeno geslo?
           </Anchor>
         </Group>

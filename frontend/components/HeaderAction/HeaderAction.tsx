@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontSize: rem(20),
     fontWeight: 900,
-
+    
     [theme.fn.smallerThan('sm')]: {
       fontSize: rem(14),
     },
@@ -122,13 +122,13 @@ export function HeaderAction({ links }: HeaderActionProps) {
   return (
     <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
       <Container className={classes.inner} fluid>
-        <Group>
+        <Group onClick={() => push('/')} style={{cursor: 'pointer'}}>
           <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
           <IconForms
-    size={36}
-    strokeWidth={2}
-    color={'#37B24D'}
-  /> <Title className={classes.title} size={'xl'}>Obrazci.net</Title>
+            size={36}
+            strokeWidth={2}
+            color={'#37B24D'}/> 
+            <Title className={classes.title} size={'xl'}>Obrazci.net</Title>
        </Group>
         <Group spacing={5} className={classes.links}>
           {items}
