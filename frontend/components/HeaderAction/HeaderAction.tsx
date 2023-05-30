@@ -12,7 +12,6 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
 import { useRouter } from 'next/router';
 import { IconForms } from '@tabler/icons';
 
