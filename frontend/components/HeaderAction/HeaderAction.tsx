@@ -28,6 +28,16 @@ const useStyles = createStyles((theme) => ({
     maxWidth: '71.25rem'
   },
 
+  title: {
+    fontSize: rem(20),
+    fontWeight: 900,
+
+    [theme.fn.smallerThan('sm')]: {
+      fontSize: rem(1),
+    },
+  },
+
+
   links: {
     [theme.fn.smallerThan('sm')]: {
       display: 'none',
@@ -118,7 +128,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
     size={36}
     strokeWidth={2}
     color={'#37B24D'}
-  /> <Title size={'xl'}style={{fontWeight: 900, fontSize: '1.2rem', color:'black'}}>Obrazci.net</Title>
+  /> <Title className={classes.title} size={'xl'}>Obrazci.net</Title>
        </Group>
         <Group spacing={5} className={classes.links}>
           {items}

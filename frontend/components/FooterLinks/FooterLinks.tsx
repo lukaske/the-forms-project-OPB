@@ -1,7 +1,7 @@
 import { createStyles, Text, Container, ActionIcon, Group, rem, Title } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import {IconForms} from '@tabler/icons'
-
+import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 const useStyles = createStyles((theme) => ({
   footer: {
     paddingTop: `calc(${theme.spacing.xl} * 2)`,
@@ -30,6 +30,16 @@ const useStyles = createStyles((theme) => ({
       textAlign: 'center',
     },
   },
+
+    title2: {
+    fontSize: rem(20),
+    fontWeight: 900,
+
+    [theme.fn.smallerThan('sm')]: {
+      fontSize: rem(1),
+    },
+  },
+
 
   inner: {
     display: 'flex',
@@ -92,7 +102,7 @@ const useStyles = createStyles((theme) => ({
 
   social: {
     [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.xs,
+      marginTop: 0,
     },
   },
 }));
@@ -139,7 +149,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
     size={36}
     strokeWidth={2}
     color={'#37B24D'}
-  /> <Title size={'xl'}style={{fontWeight: 900, fontSize: '1.2rem', color:'black'}}>Obrazci.net</Title>
+  /> <Title size={'xl'} className={classes.title2}>Obrazci.net</Title>
           <Text size="xs" color="dimmed" className={classes.description}>
             Moderni spletni obrazci.
           </Text>
@@ -152,15 +162,8 @@ export function FooterLinks({ data }: FooterLinksProps) {
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
-            <IconBrandTwitter size="1.05rem" stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandYoutube size="1.05rem" stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandInstagram size="1.05rem" stroke={1.5} />
-          </ActionIcon>
+          <ColorSchemeToggle />
+
         </Group>
       </Container>
     </footer>
