@@ -8,10 +8,15 @@ import {
   Button,
   Burger,
   rem,
+  Title,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
+import { useRouter } from 'next/router';
+import { IconForms } from '@tabler/icons';
+
+
 
 const HEADER_HEIGHT = rem(60);
 
@@ -63,6 +68,8 @@ export interface HeaderActionProps {
 export function HeaderAction({ links }: HeaderActionProps) {
   const { classes } = useStyles();
   const [opened, { toggle }] = useDisclosure(false);
+  const { push } = useRouter();
+
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
       <Menu.Item key={item.link}>{item.label}</Menu.Item>
@@ -93,7 +100,10 @@ export function HeaderAction({ links }: HeaderActionProps) {
         key={link.label}
         href={link.link}
         className={classes.link}
-        onClick={(event) => event.preventDefault()}
+        onClick={(event) => {
+          event.preventDefault();
+          push(link.link);
+        }}
       >
         {link.label}
       </a>
@@ -105,13 +115,17 @@ export function HeaderAction({ links }: HeaderActionProps) {
       <Container className={classes.inner} fluid>
         <Group>
           <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-          <MantineLogo size={28} />
-        </Group>
+          <IconForms
+    size={36}
+    strokeWidth={2}
+    color={'#37B24D'}
+  /> <Title size={'xl'}style={{fontWeight: 900, fontSize: '1.2rem', color:'black'}}>Obrazci.net</Title>
+       </Group>
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
         <Button radius="xl" h={30}               variant="gradient"
-              gradient={{ from: 'teal', to: 'limegreen' }}
+              gradient={{ from: 'teal', to: 'limegreen' }} onClick={() => push('/login')}
 >
           Odpri aplikacijo
         </Button>

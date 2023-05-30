@@ -1,4 +1,5 @@
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
+import {useRouter} from 'next/navigation';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -75,6 +76,7 @@ const useStyles = createStyles((theme) => ({
 
 export function HeroImageRight() {
   const { classes } = useStyles();
+  const { push } = useRouter();
   return (
     <div className={classes.root}>
       <Container size="lg">
@@ -105,6 +107,7 @@ export function HeroImageRight() {
               size="xl"
               className={classes.control}
               mt={40}
+              onClick={() => push('/login')}
             >
               Odpri aplikacijo →
             </Button>

@@ -1,6 +1,7 @@
-import { createStyles, Text, Container, ActionIcon, Group, rem } from '@mantine/core';
+import { createStyles, Text, Container, ActionIcon, Group, rem, Title } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
+import {IconForms} from '@tabler/icons'
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -128,20 +129,27 @@ export function FooterLinks({ data }: FooterLinksProps) {
     );
   });
 
+  // variable to hold the current date
+  var today = new Date();
+
   return (
     <footer className={classes.footer}>
       <Container className={classes.inner}>
         <div className={classes.logo}>
-          <MantineLogo size={30} />
+        <IconForms
+    size={36}
+    strokeWidth={2}
+    color={'#37B24D'}
+  /> <Title size={'xl'}style={{fontWeight: 900, fontSize: '1.2rem', color:'black'}}>Obrazci.net</Title>
           <Text size="xs" color="dimmed" className={classes.description}>
-            Build fully functional accessible web applications faster than ever
+            Moderni spletni obrazci.
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>
       <Container className={classes.afterFooter}>
         <Text color="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved.
+          © {today.getFullYear()} Obrazci.net, vse pravice pridržane.
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>

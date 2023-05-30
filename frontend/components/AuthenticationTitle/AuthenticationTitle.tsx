@@ -23,7 +23,7 @@ export function AuthenticationTitle() {
       <Text color="dimmed" size="sm" align="center" mt={5}>
         Še nimate uporabniškega računa?{' '}
         <Anchor size="sm" component="button">
-            Ustvari ga
+            Ustvarite ga
         </Anchor>
       </Text>
 
