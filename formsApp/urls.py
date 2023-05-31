@@ -1,15 +1,25 @@
-from django.urls import path
-from formsApp.views import homepage_view, login_view, register_view, user_dashboard, form_builder_view, dynamic_form_view, logout_view
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import path, include
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
 
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff']
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path("", homepage_view, name="homepage"),
-    path("login/", login_view, name="login"),
-    path("register/", register_view, name="register"),
-    path("user-dashboard/", user_dashboard, name="user_dashboard"),
-    path('form_viewer/<str:view_name>/', dynamic_form_view, name='dynamic_form_view'),
-    path("form-builder/", form_builder_view, name="form_builder"),
-    path('logout/', logout_view, name='logout')
+    path('/api/v1/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
-
-urlpatterns += staticfiles_urlpatterns()
