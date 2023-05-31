@@ -1,5 +1,5 @@
-import { AuthenticationTitle } from '../components/AuthenticationTitle/AuthenticationTitle';
-import { ForgotPassword } from '../components/ForgotPassword/ForgotPassword';
+import { AuthenticationTitle } from '../src/components/AuthenticationTitle/AuthenticationTitle';
+import { ForgotPassword } from '../src/components/ForgotPassword/ForgotPassword';
 
 export default function HomePage() {
   return (

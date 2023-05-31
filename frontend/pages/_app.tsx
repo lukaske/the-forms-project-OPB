@@ -4,9 +4,9 @@ import { getCookie, setCookie } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider, useMantineTheme } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { HeaderAction, HeaderActionProps } from '../components/HeaderAction/HeaderAction';
+import { HeaderAction, HeaderActionProps } from '../src/components/HeaderAction/HeaderAction';
 import links from '../config/navigation.json'
-import { FooterLinks } from '../components/FooterLinks/FooterLinks';
+import { FooterLinks } from '../src/components/FooterLinks/FooterLinks';
 import footer from '../config/footer.json';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {

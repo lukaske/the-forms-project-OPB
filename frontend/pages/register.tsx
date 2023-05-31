@@ -1,4 +1,4 @@
-import { RegisrationTitle } from '../components/RegistrationTitle/RegistrationTitle';
+import { RegisrationTitle } from '../src/components/RegistrationTitle/RegistrationTitle';
 
 export default function HomePage() {
   return (
