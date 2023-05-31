@@ -12,9 +12,27 @@ import {
 } from '@mantine/core';
 import {useRouter} from 'next/router';
 import { useForm } from '@mantine/form';
+import { authService } from '../../services';
+import { useState } from 'react'
 
 export function RegisrationTitle() {
   const push = useRouter().push;
+  const auth = authService;
+  const [loginProcessing, setLoginProcessing] = useState(false);
+
+  const registerMe = (input: {email :string, password: string, vpassword:string, terms: boolean}) => {
+    setLoginProcessing(true);
+    auth.register(input).then((res) => {
+      if (res){
+        push('/dashboard');
+      }
+      else{
+        setLoginProcessing(false)
+      }
+      }).catch((err) => {setLoginProcessing(false)});
+    };
+  
+
   const form = useForm({
     initialValues: { email: '', password: '', vpassword: '', terms: true },
 
@@ -43,15 +61,15 @@ export function RegisrationTitle() {
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={form.onSubmit(console.log)}>
-        <TextInput label="Email" placeholder="uporabnik@email.com" required {...form.getInputProps('email')}  />
+        <form onSubmit={form.onSubmit(registerMe)}>
+        <TextInput type='email' label="Email" placeholder="uporabnik@email.com" required {...form.getInputProps('email')}  />
         <PasswordInput label="Geslo" placeholder="Vaše geslo" required mt="md" {...form.getInputProps('password')} />
         <PasswordInput label="Ponovite geslo" placeholder="Ponovno vnesite geslo" required mt="md" {...form.getInputProps('vpassword')} />
         <Group position="apart" mt="lg">
           <Checkbox label="Strinjam se s pogoji uporabe" defaultChecked {...form.getInputProps('terms')} />
         </Group>
 
-        <Button fullWidth mt="xl" type='submit'>
+        <Button loading={loginProcessing} fullWidth mt="xl" type='submit'>
           Ustvari račun
         </Button>
         </form>
