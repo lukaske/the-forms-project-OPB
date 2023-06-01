@@ -165,7 +165,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://obrazci.net',
     'https://obrazci.net',
-    'the-forms-project-opb-production.up.railway.app'
+    'https://the-forms-project-opb-production.up.railway.app'
 ]
 
 EMAIL_BACKEND = "mailer.backend.DbBackend"
