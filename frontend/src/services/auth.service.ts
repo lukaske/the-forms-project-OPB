@@ -12,7 +12,7 @@ export interface UserToken {access: string, refresh: string, user: {email: strin
 export class AuthService {
   protected readonly instance: OpenAPIClientAxios;
   public constructor() {
-    const base = "http://localhost:8000";
+    const base = "https://the-forms-project-opb-production.up.railway.app";
     const api = new OpenAPIClientAxios({ 
       definition: base + '/swagger.json',
       axiosConfigDefaults: {baseURL: base, headers: getAuthorizationHeader()},
