@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     # Custom app
     "formsApp",
     "mailer",
-
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +73,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
 ]
 
 ROOT_URLCONF = "formsProject.urls"
@@ -150,6 +152,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'app/static'),
     '/app/static'
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
