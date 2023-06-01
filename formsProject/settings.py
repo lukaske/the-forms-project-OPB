@@ -27,7 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-vz2e&ky$6d^m4^(b9o$yddnv9(^@7r@p#0qk#$7&-+wty^fw@u"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
+
 
 ALLOWED_HOSTS = [
     'the-forms-project-opb-production.up.railway.app',
