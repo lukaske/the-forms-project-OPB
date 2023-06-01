@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-vz2e&ky$6d^m4^(b9o$yddnv9(^@7r@p#0qk#$7&-+wty^fw@u
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+if os.environ['DEBUG'] == 'FALSE': DEBUG = False
 
 ALLOWED_HOSTS = [
     'the-forms-project-opb-production.up.railway.app',
