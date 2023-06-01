@@ -29,7 +29,10 @@ SECRET_KEY = "django-insecure-vz2e&ky$6d^m4^(b9o$yddnv9(^@7r@p#0qk#$7&-+wty^fw@u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'the-forms-project-opb-production.up.railway.app',
+    'localhost'
+]
 
 
 # Application definition
@@ -162,7 +165,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://obrazci.net',
     'https://obrazci.net',
-    'https://the-forms-project-opb-production.up.railway.app'
+    'the-forms-project-opb-production.up.railway.app'
 ]
 
 EMAIL_BACKEND = "mailer.backend.DbBackend"
