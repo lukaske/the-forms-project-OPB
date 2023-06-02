@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { User } from "../../types/user";
 import { authService } from "../../services";
+import { UserToken } from "../../services/auth.service";
 
 export const useCurrentUser = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserToken | null>(null);
 
   useEffect(() => {
     const currentUser = Cookies.get("currentUser");
@@ -14,7 +15,7 @@ export const useCurrentUser = () => {
   }, []);
 
   const refetchUser = async (userId: string) => {
-    const userInfo = await authService.getMe(userId);
+    const userInfo = {username: '', avatar: ''};
     const currentUser = Cookies.get("currentUser");
 
     if (userInfo && currentUser) {

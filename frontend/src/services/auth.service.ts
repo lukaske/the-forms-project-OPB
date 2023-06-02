@@ -12,7 +12,7 @@ export interface UserToken {access: string, refresh: string, user: {email: strin
 export class AuthService {
   protected readonly instance: OpenAPIClientAxios;
   public constructor() {
-    const base = "https://the-forms-project-opb-production.up.railway.app";
+    const base = "https://api.obrazci.net";
     const api = new OpenAPIClientAxios({ 
       definition: base + '/swagger.json',
       axiosConfigDefaults: {baseURL: base, headers: getAuthorizationHeader()},
@@ -46,6 +46,9 @@ export class AuthService {
       else if(err.response?.data?.username) {
         specificError = err.response.data.username[0];
       }
+      else if(err.response?.data?.non_field_errors) {
+        specificError = err.response.data.non_field_errors[0];
+      }
       if (specificError) specificError = ": \n" + specificError;
       const msg = err.message + specificError;
       notifications.show({ message: msg, color: 'red' });
@@ -55,13 +58,13 @@ export class AuthService {
   }
 
   login = async (input: LoginForm ) => {
-    let data: Definitions.Login = {email: input.email, username: input.email, password: input.password}; 
-    console.log(data)
+    let payload: Definitions.Login = {email: input.email, username: input.email, password: input.password}; 
+    console.log(payload)
     const client = await this.instance.getClient<ObrazciClient>();
-    return client.paths["/user-auth/login/"].post(null, data).then((res) => {
+    return client.paths["/user-auth/login/"].post(null, payload).then((res): UserToken => {
       const userToken = res.data;
       Cookies.set("currentUser", JSON.stringify(userToken));
-      return userToken;
+      return userToken as any;
     })
     .catch((err) => {
       console.log(err)

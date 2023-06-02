@@ -6,12 +6,15 @@ import { MantineProvider, ColorScheme, ColorSchemeProvider, useMantineTheme } fr
 import { Notifications } from '@mantine/notifications';
 import { HeaderAction, HeaderActionProps } from '../src/components/HeaderAction/HeaderAction';
 import links from '../config/navigation.json'
+import auth_links from '../config/auth_navigation.json'
 import { FooterLinks } from '../src/components/FooterLinks/FooterLinks';
 import footer from '../config/footer.json';
+import {AuthHeader} from '../src/components/AuthHeader/AuthHeader';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  const renderHeaderOn = ['/dashboard'];
 
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
@@ -20,7 +23,6 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   };
 
   const theme = useMantineTheme();
-  
 
   return (
     <>
@@ -32,8 +34,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme, primaryColor: 'green' }} withGlobalStyles withNormalizeCSS>
-          <HeaderAction {...links}>
-          </HeaderAction>
+          {!renderHeaderOn.includes(props.router.pathname)?
+           <HeaderAction {...links}></HeaderAction>:
+           <></>}
           <Component {...pageProps} />
           <Notifications />
         </MantineProvider>
