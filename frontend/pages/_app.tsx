@@ -10,11 +10,12 @@ import auth_links from '../config/auth_navigation.json'
 import { FooterLinks } from '../src/components/FooterLinks/FooterLinks';
 import footer from '../config/footer.json';
 import {AuthHeader} from '../src/components/AuthHeader/AuthHeader';
+import MyAppShell from '../src/components/MyAppShell/MyAppShell';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
-  const renderHeaderOn = ['/dashboard'];
+  const appRoutes = ['/dashboard', '/settings', '/analytics', '/forms', '/responses'];
 
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
@@ -34,10 +35,15 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme, primaryColor: 'green' }} withGlobalStyles withNormalizeCSS>
-          {!renderHeaderOn.includes(props.router.pathname)?
-           <HeaderAction {...links}></HeaderAction>:
-           <></>}
-          <Component {...pageProps} />
+          {!appRoutes.includes(props.router.pathname)?
+          <>
+            <HeaderAction {...links}/>
+            <Component {...pageProps}/>
+          </>:
+            <MyAppShell>
+              <Component {...pageProps}/>
+            </MyAppShell>
+          }
           <Notifications />
         </MantineProvider>
       </ColorSchemeProvider>

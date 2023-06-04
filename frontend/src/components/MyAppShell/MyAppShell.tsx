@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import {
   AppShell,
   Navbar,
@@ -13,7 +13,11 @@ import {
   rem,
   createStyles,
   Group,
-  getStylesRef
+  getStylesRef,
+  filterProps,
+  Avatar,
+  Badge,
+  Tooltip
 } from '@mantine/core';
 import {
   IconBellRinging,
@@ -30,11 +34,13 @@ import {
   IconTimeline,
 } from '@tabler/icons-react';
 
-import { NavbarSimple } from '../src/components/NavbarSimple/NavbarSimple';
-import { User } from '../src/components/NavbarSimple/_user';
-import { MainLinks } from '../src/components/NavbarSimple/_mainLinks';
-import { Brand} from '../src/components/NavbarSimple/_brand';
+import { NavbarSimple } from '../NavbarSimple/NavbarSimple';
+import { User } from '../NavbarSimple/_user';
+import { MainLinks } from '../NavbarSimple/_mainLinks';
+import { Brand} from '../NavbarSimple/_brand';
 import { IconForms } from '@tabler/icons';
+import { useCurrentUser } from '../../hooks/auth/useCurrentUser';
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -110,15 +116,22 @@ const data = [
 
 ];
 
+function hashCode(s: string) {
+  for(var i = 0, h = 0; i < s.length; i++)
+      h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+  return h;
+}
 
 
-
-export default function AppShellDemo() {
+export default function MyAppShell(props: any) {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('Billing');
-
+  const [seed, setSeed] = useState((Math.random() + 1).toString(36).substring(7));
+  const push = useRouter().push;
+  const email = useCurrentUser().user?.user.email;
+  console.log(props)
   const links = data.map((item) => (
     <a
       className={cx(classes.link, { [classes.linkActive]: item.label === active })}
@@ -145,7 +158,7 @@ export default function AppShellDemo() {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
-        <Navbar width={{ sm: 300 }} p="md">
+        <Navbar width={{ sm: 250 }} p="md">
         <Navbar.Section grow>
           {links}
         </Navbar.Section>
@@ -165,7 +178,7 @@ export default function AppShellDemo() {
      }
 
       header={
-        <Header height={{ base: 60}} p="md">
+        <Header height={{ base: 60}} p="md" style={{display: 'flex', justifyContent: 'space-between'}}>
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
               <Burger
@@ -176,7 +189,8 @@ export default function AppShellDemo() {
                 mr="xl"
               />
             </MediaQuery>
-          <Group style={{paddingLeft: 7}}>
+
+          <Group style={{paddingLeft: 7, cursor: 'pointer'}} onClick={() => push('/')}>
           <IconForms
             size={36}
             strokeWidth={2}
@@ -186,11 +200,20 @@ export default function AppShellDemo() {
 
           </Group>
           </div>
+          <div style={{ display: 'flex', alignItems: 'center', height: '100%', justifyContent:'right' }}>
+          <Group style={{paddingLeft: 7}}>
+          <Tooltip label={`Account: ${email}`} withArrow arrowSize={6}>
+          <Avatar radius="md" src={`https://api.dicebear.com/6.x/croodles-neutral/svg?seed=${seed}&flip=true&backgroundColor=e0f0e3`} />
+          </Tooltip>
+
+
+          </Group>
+          </div>
+
         </Header>
       }
     >
-      <Text>Resize app to see responsive navbar in action</Text>
-      
+      {props.children}
     </AppShell>
   );
 }
