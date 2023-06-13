@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-
+from .models import Form
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -39,3 +39,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff']
+
+class FormSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Form
+        fields = '__all__'
