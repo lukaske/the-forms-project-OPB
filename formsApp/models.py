@@ -8,3 +8,8 @@ class Form(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.form_name
+    
+class Submit(models.Model):
+    form_id = models.ForeignKey(Form, on_delete=models.CASCADE)
+    submit_data = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
